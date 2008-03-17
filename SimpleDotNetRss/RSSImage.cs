@@ -3,7 +3,7 @@ namespace SimpleDotNetRSS
 {
     /// <summary>
     /// Used to add a single Image to your RSS feed. This is usually an image that represents the general content
-    /// of the RSS feed or the company logo for the owener of the feed.
+    /// of the RSS feed or the company logo for the owner of the feed.
     /// </summary>
     public class RSSImage
     {
