@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleDotNetRSS</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleDotNetRSS.RSSItem">
+            <summary>
+            Represents a RSS Item in a RSS Channel.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSItem.#ctor(System.String,System.String,System.String)">
+            <summary>
+            This represents one RSS Item. 
+            This constructor fits the base requirements for an RSS Item
+            </summary>
+            <param name="title">The Title of the RSS Item</param>
+            <param name="link">The URL of the Item</param>
+            <param name="description">A short description of the RSS Item.</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSItem.ToString">
+            <summary>
+            Will return the items portion of the RSS feed.
+            </summary>
+            <returns>XML for this Item in RSS format</returns>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.Title">
+            <summary>
+            The title of the item. Read Only.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.Link">
+            <summary>
+            The URL of the item. Read Only.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.Description">
+            <summary>
+            The item synopsis. Read only.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.AuthorsEmail">
+            <summary>
+            Email address of the author of the item
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.AuthorsName">
+            <summary>
+            The Authors Name
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.Categorys">
+            <summary>
+            Includes the item in one or more categories. 
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.CommentsPage">
+            <summary>
+            URL of a page for comments relating to the item.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.ItemEnclosure">
+             <summary>
+            Describes a media object that is attached to the item.
+             </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.PubDate">
+            <summary>
+            Indicates when the item was published.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.Guid">
+            <summary>
+            A unique Identifier for this Item. If this is left as null it will use 
+            the links property for generating one. Can be any values, just as long as 
+            it is unique to the item and does not change.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.GuidIsPermaLink">
+            <summary>
+            Wether or not the Guid is an actual link or not. Default is false.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSItem.Extensions">
+            <summary>
+            A list of custom tags. This is used to extend RSS. 
+            You need to make sure to include the namespace for the tag in the channel.
+            </summary>
+        </member>
+        <member name="T:SimpleDotNetRSS.RSSEnclosure">
+            <summary>
+            This is applyed to Items that should have files associated to them. All feilds are required.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSEnclosure.#ctor(System.String,System.UInt64,System.String)">
+            <summary>
+            This is used for attaching files to an RSS feed. All fields are required 
+            for campatability of the standard.
+            </summary>
+            <param name="url">The URL of the media file.</param>
+            <param name="length">The size in Bytes of the file</param>
+            <param name="mimeType">The Mime Type for that file</param>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSEnclosure.EnclosureURL">
+            <summary>
+            The URL of the media file.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSEnclosure.Length">
+            <summary>
+            The size in Bytes of the file
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSEnclosure.MimeType">
+            <summary>
+            The Mime Type for that file
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSExtensionTag.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates a specialized tag for tags that are not native to RSS 2.0 but are 
+            included bacause of an RSS namespace decleration
+            </summary>
+            <param name="extension">The RSS Name space (i.e. Atom or Itunes)</param>
+            <param name="tag"> The special namespace tag</param>
+            <param name="value">What goes between the begining and closing tags.</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSExtensionTag.ToString">
+            <summary>
+            Returns the RSS for this extension.
+            </summary>
+            <returns>Returns the RSS for this extension.</returns>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSExtensionTag.Extension">
+            <summary>
+            The RSS Name space (i.e. Atom or Itunes). Read-only.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSExtensionTag.Tag">
+            <summary>
+            The special namespace tag. Read-only.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSExtensionTag.Value">
+            <summary>
+            What goes between the begining and closing tags. Read-only.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSExtensionTag.Attributes">
+            <summary>
+            Allows you to set attributes for the extension
+            </summary>
+        </member>
+        <member name="T:SimpleDotNetRSS.SimpleRSSLink">
+            <summary>
+            Generates a link on your page for the rss if your page has implimented the ISimpleDotNetRSS interface.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.SimpleRSSLink.RenderContents(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Writes out the html for the control.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.SimpleRSSLink.ImageBorder">
+            <summary>
+            Do you want an Image border or not?
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.SimpleRSSLink.Text">
+            <summary>
+            The Text to display if the control is not an image button, or the alt text if it is an image button.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.SimpleRSSLink.ImageUrl">
+            <summary>
+            The images location for the image button."
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.SimpleRSSLink.ImageButton">
+            <summary>
+            Set to true to Have the control render as an image button.
+            </summary>
+        </member>
+        <member name="T:SimpleDotNetRSS.RSSCategory">
+            <summary>
+            Represents a category that you want your RSSItem or RSSChannel to have.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSCategory.#ctor(System.String)">
+            <summary>
+            Stores a category for the RSS Channel or Item
+            </summary>
+            <param name="categoryText">The category to be added</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSCategory.#ctor(System.String,System.String)">
+            <summary>
+            Stores a category for the RSS Channel or Item. If you don't understand the domain 
+            paramater, don't use this constructor.
+            </summary>
+            <param name="categoryText">The category to be added</param>
+            <param name="domain">The value of the element is a forward-slash-separated
+            string that identifies a hierarchic location in the indicated taxonomy. 
+            Processors may establish conventions for the interpretation of categories.
+            An example is: http://www.fool.com/cusips </param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSCategory.ToString">
+            <summary>
+            Returns the RSS Category Eliment.
+            </summary>
+            <returns>the RSS string</returns>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSCategory.Domain">
+            <summary>
+            The value of the element is a forward-slash-separated
+            string that identifies a hierarchic location in the indicated taxonomy. 
+            Processors may establish conventions for the interpretation of categories.
+            An example is: http://www.fool.com/cusips
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSCategory.CategoryText">
+            <summary>
+            Stores a category for the RSS Channel or Item. If you don't understand the domain 
+            paramater, don't use this constructor. Read-Only.
+            </summary>
+        </member>
+        <member name="T:SimpleDotNetRSS.ISimpleDotNetRSS">
+            <summary>
+            Interface for retreiving a RSSChannel object.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.ISimpleDotNetRSS.RSSOutPut">
+            <summary>
+            Outputs an RSS Channel feed for that object
+            </summary>
+            <returns>An RSSChannel Object</returns>
+        </member>
+        <member name="T:SimpleDotNetRSS.RSSImage">
+            <summary>
+            Used to add a single Image to your RSS feed. This is usually an image that represents the general content
+            of the RSS feed or the company logo for the owener of the feed.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSImage.#ctor(System.String)">
+            <summary>
+            If you don't want an Image use the default constructor and it will be ignored.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSImage.#ctor(System.String,System.String,System.String)">
+            <summary>
+             is an optional sub-element of channel,
+            which contains three (two supported) required and three optional sub-elements.
+            The optional height and wi
+            </summary>
+            <param name="imageURL"> is the URL of a GIF, JPEG or PNG image that represents the channel. </param>
+            <param name="imageTitle">describes the image, it's used in the ALT attribute of the HTML img tag when the channel is rendered in HTML.</param>
+            <param name="imageLink">is the URL of the site, when the channel is rendered, the image is a link to the site.
+            (Note, in practice the image title and link should have the same value as the channel's title
+            and </param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSImage.#ctor(System.String,System.String,System.String,System.UInt32,System.UInt32)">
+            <summary>
+             is an optional sub-element of channel,
+            which contains three (two supported) required and three optional sub-elements.
+            </summary>
+            <param name="imageURL"> the URL of a GIF, JPEG or PNG image that represents the channel. </param>
+            <param name="imageTitle">describes the image, it's used in the ALT attribute of the HTML img tag when the channel is rendered in HTML.</param>
+            <param name="imageLink">is the URL of the site, when the channel is rendered, the image is a link to the site.
+            (Note, in practice the image title and link should have the same value as the channel's title
+            and link)</param>
+            <param name="width">(Optional) Default is 88, max is 144(pixels)</param>
+            <param name="height">(Optional) Default is 88, max is 144(pixels)</param>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSImage.ImageURL">
+            <summary>
+            the URL of a GIF, JPEG or PNG image that represents the channel.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:SimpleDotNetRSS.RSSImage.ImageTitle" -->
+        <member name="P:SimpleDotNetRSS.RSSImage.ImageLink">
+            <summary>
+            is the URL of the site, when the channel is rendered, the image is a link to the site.
+            (Note, in practice the image title and link should have the same value as the channel's title
+            and link)
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSImage.Width">
+            <summary>
+            (Optional) Default is 88, max is 144(pixels)
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSImage.Height">
+            <summary>
+            (Optional) Default is 88, max is 144(pixels)
+            </summary>
+        </member>
+        <member name="T:SimpleDotNetRSS.RSSChannel">
+            <summary>
+            The Main object for creating an RSS feed. After one of these objects is initialized through a 
+            constructor you will be able to output the RSS as a formatted string using CreateRSS Method. 
+            The staic version of that method will create the rss for any RSSChannel object that is passed
+            in, while the no static version will just create the RSS for it's self.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.#ctor(System.String,System.String,System.String,SimpleDotNetRSS.RSSItem[])">
+            <summary>
+            This creates the single
+            channel element, which contains information
+            about the channel (metadata) and its contents.
+            This constructor provides only the required feilds
+            </summary>
+            <param name="title">
+            The name of the channel. It's how people refer
+            to your service. If you have an HTML website 
+            that contains the same information as your RSS 
+            file, the title of your channel should be the 
+            same as the title of your website.
+            </param>
+            <param name="link">The URL to the HTML website corresponding to the channel.</param>
+            <param name="description">Phrase or sentence describing the channel. Limit 200 Characters</param>
+            <param name="items">The Array of Items that the Channel should include</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.AddToSkipDays(System.DayOfWeek)">
+            <summary>
+            A hint for aggregators telling them which days they can skip.
+            </summary>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.CreateRSS(System.Web.UI.Page)">
+            <summary>
+            Creates the RSS feed and stops the output of the current page.
+            </summary>
+            <param name="currentPage">The page to create the rss with</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.CreateRSS">
+            <summary>
+            Creates the RSS for this RSSChannel
+            </summary>
+            <returns>The RSS 2.0 xml file in a string</returns>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.MakeChannelHeader(System.Text.StringBuilder)">
+            <summary>
+            Creates the header information for the RSS
+            </summary>
+            
+            <param name="RSSFeed">The StringBuilder to add too.</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.MakeRSSImageTag(System.Text.StringBuilder)">
+            <summary>
+            Adds an image to the feed.
+            </summary>
+            <param name="RSSFeed">The Stringbuilder you want the Image eliments added too.</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.MakeItems(SimpleDotNetRSS.RSSChannel,System.Text.StringBuilder)">
+            <summary>
+            Creates the Items for the Channel that is passed in.
+            </summary>
+            <param name="Feed">The Channel to generate the items from</param>
+            <param name="RSSFeed">The StringBuilder to add the xml too.</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.Add(SimpleDotNetRSS.RSSItem)">
+            <summary>
+            Adds to the RSSItems that will be stored.
+            </summary>
+            <param name="item">The RSS Item to add</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.AddRange(SimpleDotNetRSS.RSSItem[])">
+            <summary>
+            Adds a range of RSSItems to the RSSChannel.
+            </summary>
+            <param name="items">The RSSItems to store</param>
+        </member>
+        <member name="M:SimpleDotNetRSS.RSSChannel.Clear">
+            <summary>
+            clears the RSSItems that are stored in the RSSChannel.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.RssNamespaces">
+            <summary>
+            The first value is the namespace name, the second is the url identifier.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.ManagingEditorName">
+            <summary>
+            The name of the managing Editor
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.WebMasterName">
+            <summary>
+            The name of the Web Master
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Items">
+            <summary>
+            The Items contained in the RSS Channel
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Title">
+            <summary>
+            The name of the channel. It's how people refer
+            to your service. If you have an HTML website 
+            that contains the same information as your RSS 
+            file, the title of your channel should be the 
+            same as the title of your website.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Link">
+            <summary>
+            The URL to the HTML website corresponding to the channel.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Description">
+            <summary>
+            Phrase or sentence describing the channel. Limit 200 Characters
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Language">
+            <summary>
+            The language the channel is written in. This allows
+            aggregators to group all Italian language sites, for example,
+            on a single page. A list of allowable values for this element,
+            as provided by Netscape, is http://cyber.law.harvard.edu/rss/languages.html.
+            You may also use values defined by the W3C.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Copyright">
+            <summary>
+            Copyright notice for content in the channel. use &amp;#169; for ©.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.MangingEditorEmail">
+            <summary>
+            Email address for person responsible for editorial content.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.WebMasterEmail">
+            <summary>
+            Email address for person responsible for technical issues relating to channel.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.PubDate">
+            <summary>
+            	The publication date for the content in the channel.
+            For example, the New York Times publishes on a daily basis,
+            the publication date flips once every 24 hours. That's when
+            the pubDate of the channel changes. 
+            i.e. Sat, 07 Sep 2002 00:00:01 GMT
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.LastBuildDate">
+            <summary>
+            The last time the content of the channel changed.	
+            i.e. Sat, 07 Sep 2002 00:00:01 GMT
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Categorys">
+            <summary>
+            Specify one or more categories that the 
+            channel belongs to. Follows the same rules 
+            as the item-level category element.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Ttl">
+            <summary>
+            ttl stands for time to live. It's a number
+            of minutes that indicates how long a 
+            channel can be cached before refreshing from the source
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.Image">
+            <summary>
+            Specifies a GIF, JPEG or PNG
+            image that can be displayed with the channel.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.SkipHours">
+            <summary>
+            A hint for aggregators telling them which hours they can skip.
+            </summary>
+        </member>
+        <member name="P:SimpleDotNetRSS.RSSChannel.SkipDays">
+            <summary>
+            Returns the days currently set to be skipped
+            </summary>
+        </member>
+    </members>
+</doc>
