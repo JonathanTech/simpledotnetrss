@@ -4,7 +4,7 @@
 = Basic Overview of Classes and Their Functions =
 
 === RSSChannel ===
-The Main object for creating an RSS feed. After one of these objects is initialized through a constructor you will be able to output the RSS as a formatted string using CreateRSS Method or the `ToString` method.
+The Main object for creating an RSS feed. After one of these objects is initialized through a constructor you will be able to output the RSS as a formatted string using CreateRSS Method or the `.ToString()` method.
 
 === RSSItem ===
 Represents a RSS Item in a RSS Channel. This is where all your posts/articles/comments go. This basically is the list of items that you want to keep the world updated on. There are some basic guidelines for what should go in here, but basically you can put whatever you want in the description, including html.
