@@ -7,9 +7,8 @@ namespace SimpleDotNetRSS
 {
     /// <summary>
     /// The Main object for creating an RSS feed. After one of these objects is initialized through a 
-    /// constructor you will be able to output the RSS as a formatted string using CreateRSS Method. 
-    /// The staic version of that method will create the rss for any RSSChannel object that is passed
-    /// in, while the no static version will just create the RSS for it's self.
+    /// constructor you will be able to output the RSS as a formatted string using CreateRSS Method or 
+    /// the ToString method.
     /// </summary>
     public class RSSChannel
     {
@@ -411,7 +410,7 @@ namespace SimpleDotNetRSS
         #region RSS Generation methods
 
         /// <summary>
-        /// Creates the RSS feed and stops the output of the current page.
+        /// Creates the RSS feed and *stops* the output of the current page.
         /// </summary>
         /// <param name="currentPage">The page to create the rss with</param>
         public void CreateRSS(System.Web.UI.Page currentPage)
