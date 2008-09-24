@@ -17,7 +17,7 @@ namespace SimpleDotNetRSS
         /// Creates a specialized tag for tags that are not native to RSS 2.0 but are 
         /// included bacause of an RSS namespace decleration
         /// </summary>
-        /// <param name="extension">The RSS Name space (i.e. Atom or Itunes)</param>
+        /// <param name="extension">The RSS Name space (i.e. Atom or Itunes), or leave blank to just include the tag</param>
         /// <param name="tag"> The special namespace tag</param>
         /// <param name="value">What goes between the begining and closing tags.</param>
         public RSSExtensionTag(string extension, string tag, string value)
@@ -66,13 +66,20 @@ namespace SimpleDotNetRSS
         public override string ToString()
         {
             StringBuilder temp = new StringBuilder();
-
-            temp.AppendFormat("<{0}:{1} ", Extension, Tag);
-            foreach (KeyValuePair<string, string> vp in Attributes)
-            {
-                temp.AppendFormat("{0}=\"{1}\"", vp.Key, vp.Value);
+            if (string.IsNullOrEmpty(Extension)) {
+                temp.AppendFormat("<{0} ", Tag);
+                foreach (KeyValuePair<string, string> vp in Attributes) {
+                    temp.AppendFormat("{0}=\"{1}\"", vp.Key, vp.Value);
+                }
+                temp.AppendFormat(">{0}</{1}>", Value,  Tag);
             }
-            temp.AppendFormat(">{0}</{1}:{2}>", Value, Extension, Tag);
+            else {
+                temp.AppendFormat("<{0}:{1} ", Extension, Tag);
+                foreach (KeyValuePair<string, string> vp in Attributes) {
+                    temp.AppendFormat("{0}=\"{1}\"", vp.Key, vp.Value);
+                }
+                temp.AppendFormat(">{0}</{1}:{2}>", Value, Extension, Tag);
+            }
             return temp.ToString();
         }
     }
